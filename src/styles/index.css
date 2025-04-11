@@ -1,3 +1,4 @@
+
 /* 
 
     You can write your own styles here...
@@ -9,3 +10,84 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+body {
+    background-image:linear-gradient(180deg, #74716c, #00031b 121.35%);
+    height: 100vh;
+    width: 100%;
+}
+h1 {
+    font-family: "Delius", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+.tareas {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    background-color: rgb(10, 10, 10);
+    max-width: 400px;
+    padding: 10px 20px;
+    margin: auto;
+    min-height: 40vh;
+    color: rgb(255, 255, 255);
+    border: rgb(255, 255, 255) 7px dashed;
+    box-shadow: 12px 10px 5px 0px rgba(0, 0, 0, 0.5);
+
+}
+input {
+    width: 85%;
+    padding: 8px;
+    box-sizing: border-box;
+    font-size: 13px;
+
+    outline: none;
+}
+input:hover {
+    border-color: #bfbebe;
+    box-shadow: 0 0 10px rgba(222, 18, 18, 0.816);
+}
+
+li {
+    list-style: none;
+    font-family: "Playwrite IN", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 15px;
+    padding: 10px;
+}
+
+li:hover {
+    background-color: rgba(10, 10, 10, 0.789);
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 5px;
+}
+span {
+    visibility: hidden; 
+    cursor: pointer;
+  }
+
+li:hover span {
+   visibility: visible;
+}
+.counter {
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    font-size: small;
+}
+.down {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+button:hover {
+    border-color: #989898;
+    box-shadow: 0 0 15px rgba(222, 18, 18, 0.816);;
+}
