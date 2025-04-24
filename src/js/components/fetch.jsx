@@ -5,15 +5,26 @@ export const Fetch = () => {
 
     const [task, setTask] = useState('')
     const [data, setData] = useState([])
-    let counter = data.length
+    const [users, setUsers] = useState('')
+    let counter = data.length -1
 
     useEffect(()=> {
          getUsersCreated()
     }, [])
+
     
+    
+
     const createUser = () => {
         fetch('https://playground.4geeks.com/todo/users/Ruben7ctrl', {
-            method: 'Post'
+            method: 'Post',
+            body: JSON.stringify({
+                'label': task,
+                'is_done': false
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
         .then( response => {
             if (!response.ok) throw new Error(`error code: ${response.status}`)
@@ -33,11 +44,12 @@ export const Fetch = () => {
             if (data.todos.length === 0) {
                 setData(["No tasks, add tasks!!!"])
             } else {
-            setData(data.todos)};
+                setData(["My tasks for today", ...data.todos])};
         })
     
         .catch(err => createUser())
     }
+
 
     // useEffect(() => {
     //     if (task.length > 0) {
@@ -105,13 +117,7 @@ export const Fetch = () => {
         setTask(e.target.value)
     }
 
-    const handleKeyDown = (e) => {
-        if (e.code == 'enter') {
-                handleSubmit(e)
-        }
-    }
-    
-    counter = data.length
+    counter = data.length -1
 
     const handleClick = () => {
         fetch('https://playground.4geeks.com/todo/users/Ruben7ctrl', {
@@ -119,22 +125,31 @@ export const Fetch = () => {
 		})
 			.then(resp => {
                 if (!resp.ok) throw new Error(`error code: ${resp.status}`);
-				getUsersCreated()
+				createUser()
 			})
             .catch(err => console.log(err));
     }
 
-console.log(data)
+    // const handleClickEvent = (val) => {
+    //     setUsers(val)
+    // }
+
+// console.log(data)
 
     return (
         <>
+            <div>
+                <ul>
+                    
+                </ul>
+            </div>
             <div className="tareas">
-                <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} >
+                <form onSubmit={handleSubmit} >
                     <input type="text" placeholder="What needs to do?" value={task} onChange={handleWorkChange}/>
                 </form>
 
                 <ul>
-                    {data && data.map((el, i) => el === "No tasks, add tasks!!!" ? ( <li key={i}>{el}</li> ) : <li key={i}>{el.label}<span onClick={() => handleDelete(el.id)} className="text-danger p-1"><i className="fa-brands fa-x-twitter"></i></span></li>)}
+                    {data && data.map((el, i) => typeof el === "string" ? ( <li key={i}>{el}</li> ) : <li key={i}>{el.label}<span onClick={() => handleDelete(el.id)} className="text-danger p-1"><i className="fa-brands fa-x-twitter"></i></span></li>)}
                 </ul>
                 <div className="down">
                     <p className="counter">Items {counter}</p>
